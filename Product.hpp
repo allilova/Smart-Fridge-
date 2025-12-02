@@ -1,49 +1,38 @@
-#include <iostream>
+#ifndef PRODUCT_HPP 
+#define PRODUCT_HPP
+
 #include <string>
-#include <vector>
-#include <algorithm> 
+#include <iostream>
+
+enum class Category {
+    DAIRY,      
+    MEAT,      
+    VEGETABLE,  
+    FRUIT,      
+    OTHER      
+};
 
 class Product {
-public:
-    
-    Product(std::string n, std::string c, double q, std::string exDate, std::string adDate) {
-        name = n;
-        quantity = q;
-        expiryDate = exDate;
-        addedDate = adDate;
-
-       
-        if (isValidCategory(c)) {
-            category = c;
-        } else {
-            category = "other"; 
-            std::cout << "Warning: Invalid category for " << n << ". Set to 'other'.\n";
-        }
-    }
-
-    ~Product() {}
-
-    
-    void displayInfo() const {
-        std::cout << "Name: " << name << "\n"
-                  << "Category: " << category << "\n"
-                  << "Quantity: " << quantity << "\n"
-                  << "Expires: " << expiryDate << "\n"
-                  << "Added: " << addedDate << "\n"
-                  << "--------------------------\n";
-    }
-
 private:
     std::string name;
-    std::string category; 
-    double quantity;      
-    std::string expiryDate;
-    std::string addedDate;
-    bool isValidCategory(const std::string& c) {
-        const std::vector<std::string> validCategories = {"dairy", "meat", "vegetable", "fruit", "drink", "other"};
-        for (const auto& valid : validCategories) {
-            if (valid == c) return true;
-        }
-        return false;
-    }
+    Category category;
+    double quantity;          
+    std::string expirationDate; 
+    std::string addedDate;      
+
+public:
+    Product(std::string name, Category category, double quantity, 
+            std::string expirationDate, std::string addedDate);
+            
+    bool isExpired(std::string currentDate) const;
+    std::string toString() const;
+
+    std::string getName() const;
+    Category getCategory() const;
+    double getQuantity() const;
+    std::string getExpirationDate() const;
+
+    static std::string categoryToString(Category cat);
 };
+
+#endif 
