@@ -16,7 +16,7 @@ class Fridge{
 
     public:
      void addProduct(const Product& p);
-     void removeProduct();
+     void removeProduct(const Product& p);
      void searchProduct();
      void sortProducts();
      void displayProducts() const;
