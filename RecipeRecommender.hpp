@@ -16,9 +16,9 @@ class RecipeRecommender {
 
     public:
         RecipeRecommender();
-        void analyzerProductsInFridge();
+        void analyzerProductsInFridge(const std::vector<Product>& fridgeContents);
         void recommendRecipes(const std::vector<Product>& fridgeContents);
         bool isIngredientAvailable(const std::string ingredient, const std::vector<Product>& fridgeContents);
-        void checkMissingProductsForRecipe();
+        void checkMissingProductsForRecipe(const std::vector<Product>& fridgeContents);
 };
 #endif
