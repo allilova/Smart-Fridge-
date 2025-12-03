@@ -1,4 +1,9 @@
 #include <iostream>
+#include <string>
+#include "Fridge.hpp"
+#include "NotificationManager.hpp"
+#include "RecipeRecommender.hpp"
+#include "StatisticsManager.hpp"
 #include "Product.hpp" 
 
 int main() {

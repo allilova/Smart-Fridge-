@@ -8,23 +8,23 @@ RecipeRecommender::RecipeRecommender(){
     recipeDatabase.push_back(r1);
 
     Recipe r2;
-    r1.name = "Shopska Salad";
-    r1.requiredIngredients = {"tomato", "cucumber", "cheese", "onion", "peppers"};
+    r2.name = "Shopska Salad";
+    r2.requiredIngredients = {"tomato", "cucumber", "cheese", "onion", "peppers"};
     recipeDatabase.push_back(r2);
 
     Recipe r3;
-    r1.name = "Omlette";
-    r1.requiredIngredients = {"eggs", "cheese", "oil", "milk"};
+    r3.name = "Omlette";
+    r3.requiredIngredients = {"eggs", "cheese", "oil", "milk"};
     recipeDatabase.push_back(r3);
 
     Recipe r4;
-    r1.name = "Musaka";
-    r1.requiredIngredients = {"meat", "potato", "onion", "yoghurt", "eggs"};
+    r4.name = "Musaka";
+    r4.requiredIngredients = {"meat", "potato", "onion", "yoghurt", "eggs"};
     recipeDatabase.push_back(r4);
 
     Recipe r5;
-    r1.name = "Fruit Salad";
-    r1.requiredIngredients = {"apple", "banana", "orange", "honey"};
+    r5.name = "Fruit Salad";
+    r5.requiredIngredients = {"apple", "banana", "orange", "honey"};
     recipeDatabase.push_back(r5);
 }
 
