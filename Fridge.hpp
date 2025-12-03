@@ -15,6 +15,7 @@ class Fridge{
 
 
     public:
+    const std::vector<Product>& getContents() const { return products; }
      void addProduct(const Product& p);
      void removeProduct(const Product& p);
      void searchProduct();
