@@ -28,7 +28,6 @@ void Fridge::removeProduct(const Product& p){
 void Fridge::searchProduct(){
     std::string searchName;
     std::cout << "Enter product name to search: ";
-    std::cin.ignore();
     std::getline(std::cin, searchName);
 
     bool found = false;
