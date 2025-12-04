@@ -42,17 +42,14 @@ int main() {
     while (true){
         std::cout << "\nSmart Fridge Menu:\n";
         std::cout << "1. Add Product\n";
-        std::cout << "2. Remove Product\n";
-        std::cout << "3. View Fridge Contents\n";
-        std::cout << "4. Search Product\n";
-        std::cout << "5. Sort Products\n";
-        std::cout << "6. Check Expired Products\n";
-        std::cout << "7. Analyze Fridge Contents\n";
-        std::cout << "8. Recommend Recipes\n";
-        std::cout << "9. Generate Shopping List for Recipes\n";
-        std::cout << "10. View Statistics\n";
-        std::cout << "11. Set Today's Date\n";
-        std::cout << "12. Exit\n";
+        std::cout << "2. Remove Product\n";;
+        std::cout << "3. Search Product\n";
+        std::cout << "4. Show available products\n";
+        std::cout << "5. Check Expired Products\n";
+        std::cout << "6. Missing products (Quantity < 1)\n";
+        std::cout << "7. Recommend Recipes\n";
+        std::cout << "8. Consumption statistics\n";
+        std::cout << "9. Exit\n";
         std::cout << "Enter your choice: ";
 
         if(!(std::cin >> choice)){
@@ -60,14 +57,89 @@ int main() {
             continue;
         }
         std::cin.ignore();
-        if(choice == 12){
+        if(choice == 9){
             std::cout << "Exiting Smart Fridge. Goodbye!\n";
             break;
         }
 
-        
+        switch (choice){
+        case 1:{
+            std::string name, expDate, addedDate;
+            double quantity;
 
-    
+            std::cout << "Enter product name: ";
+            std::getline(std::cin, name);
+            Category category = inputCategory();
 
-    return 0;
+            std::cout << "Enter quantity: ";
+            while(!(std::cin >> quantity)){
+                std::cout << "Invalid input. Please enter a valid quantity: ";
+                clearInputBuffer();
+            }
+            std::cin.ignore();
+            std::cout << "Enter expiration date (YYYY-MM-DD): ";
+            std::getline(std::cin, expDate);
+            std::cout << "Enter added date (YYYY-MM-DD): ";
+            std::getline(std::cin, addedDate);
+            Product newProduct(name, category, quantity, expDate, addedDate);
+            myFridge.addProduct(newProduct);
+            notifier.notifyAddedProduct(name);
+            break;
+        }
+        case 2: {
+            std::string nameToRemove;
+            std::cout << "Enter product name to remove: ";
+            std::getline(std::cin, nameToRemove);
+            Product tempProd(nameToRemove, Category::OTHER, 0, "", "");
+            myFridge.removeProduct(tempProd);
+            notifier.notifyRemovedProduct(nameToRemove);
+            stats.logProductConsumption(nameToRemove);
+            break;
+        }
+        case 3:
+            myFridge.searchProduct();
+            break;
+        case 4:
+            char sortChoice;
+            std::cout << "Sort products before displaying? (y/n): ";
+            std::cin >> sortChoice;
+            if(sortChoice == 'y' || sortChoice == 'Y'){
+                myFridge.sortProducts();
+            }
+            myFridge.displayProducts();
+            break;
+        case 5:
+            myFridge.expiredProducts();
+            std::cout << "Enter today's date (YYYY-MM-DD) for expiration check: ";
+            std::cin >> todayDate;
+            notifier.notifyExpirationDateApproaching(myFridge.getContents(), todayDate);
+            break;
+        case 6:
+            myFridge.generateListOfMissingProducts();
+            break;
+        case 7:{
+            std::vector<Product> currentContents = myFridge.getContents();
+            std::cout << "Analyzing fridge contents for recipe recommendations...\n";
+            recommender.analyzerProductsInFridge(currentContents);
+            std::cout << "Recommended Recipes:\n";
+            recommender.recommendRecipes(currentContents);
+            std::cout << "Checking for missing products for recipes...\n";
+            recommender.checkMissingProductsForRecipe(currentContents);
+            break;
+        }
+        case 8:{
+            std::cout << "Statistics:\n";
+            stats.MostUsedProducts();
+            std::cout << "\n";
+            stats.TrackingExhaustionRates();
+            std::cout << "\n";
+            stats.BasicStatistics();
+            break;
+        }
+        default:
+            std::cout << "Invalid choice. Please try again.\n";
+            break;
+        }
+}
+ return 0;
 }
