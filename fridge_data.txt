@@ -1,0 +1,5 @@
+Tomato,Fruit,1.5,2025-12-10,2025-12-04
+Orange,Fruit,2,2025-12-10,2025-12-0
+cucumber,Vegetable,2,2025-12-10,2025-12-04
+yogurt,Dairy,200,2025-12-05,2025-12-05
+garlic,Vegetable,5,2026-01-01,2025-12-04
