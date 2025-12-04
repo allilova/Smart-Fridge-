@@ -19,7 +19,7 @@ Category inputCategory(){
     std::cout << "2. VEGETABLE\n";
     std::cout << "3. FRUIT\n";
     std::cout << "4. OTHER\n";
-    std::cout << "Enter choice (1-5): ";
+    std::cout << "Enter choice (0-4): ";
     while(!(std::cin >> choice) || choice < 0 || choice > 4){
         std::cout << "Invalid input. Please enter a number between 1 and 5: ";
         clearInputBuffer();
