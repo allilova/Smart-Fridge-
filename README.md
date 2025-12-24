@@ -1,5 +1,3 @@
-# Smart-Fridge
-Smart Fridge Simulator: A C++ console application for tracking products, expiration dates, and automatically generating shopping lists.
 # 🧊 Smart Fridge System
 
 Smart Fridge is a console-based C++ application designed to help users manage food products in their refrigerator efficiently. The system tracks quantities, expiration dates, provides consumption statistics, and recommends recipes based on available ingredients.
